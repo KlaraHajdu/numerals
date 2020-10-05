@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import convertNumbers from "../util";
 
 export default function NumberConversion() {
     const [inputNumber, setInputNumber] = useState();
@@ -10,7 +11,7 @@ export default function NumberConversion() {
 
     const convertNumber = (e) => {
         e.preventDefault();
-        if (inputNumber === "1") setTextNumber("one");
+        setTextNumber(convertNumbers(inputNumber));
 
     };
 
