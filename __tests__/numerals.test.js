@@ -17,3 +17,14 @@ it("provides one for 1", () => {
 
     expect(getByTestId("number-text").textContent).toEqual("one");
 });
+
+it("provides two for 2", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '2');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("two");
+});
