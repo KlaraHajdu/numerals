@@ -96,3 +96,25 @@ it("provides one hundred and twelve  for 112", () => {
 
     expect(getByTestId("number-text").textContent).toEqual("one hundred and twelve");
 });
+
+it("provides thirteen hundred and thirty-six  for 1336", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '1336');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("thirteen hundred and thirty-six");
+});
+
+it("provides twenty-one thousand three hundred and thirty-six  for 21336", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '21336');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("twenty-one thousand three hundred and thirty-six");
+});
