@@ -1,5 +1,5 @@
 const numbers = {
-    'special': {
+    special: {
         0: "zero",
         10: "ten",
         11: "eleven",
@@ -10,7 +10,7 @@ const numbers = {
         16: "sixteen",
         17: "seventeen",
         18: "eighteen",
-        19: "nineteen",    
+        19: "nineteen",
     },
     1: {
         1: "one",
@@ -32,22 +32,12 @@ const numbers = {
         70: "seventy",
         80: "eighty",
         90: "ninety",
-    }, 
-    3: {
-        100: "hundred",
     },
-    4: {
-        1000: "thousand",
-    }, 
-    7: {
-        1000000: "million",
-    }, 
-    10: {
-        1000000000: "billion",
-    }, 
-    13: {
-        1000000000000: "trillion"
-    }
-}
+    3: "hundred",
+    4: "thousand",
+    7: "million",
+    10: "billion",
+    13: "trillion",
+};
 
 export default numbers;
