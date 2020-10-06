@@ -108,7 +108,7 @@ it("provides thirteen hundred and thirty-six  for 1336", () => {
     expect(getByTestId("number-text").textContent).toEqual("thirteen hundred and thirty-six");
 });
 
-it("provides twenty-one thousand three hundred and thirty-six  for 21336", () => {
+it("provides twenty-one thousand three hundred and thirty-six  for 21,336", () => {
     const { getByTestId } = render(<NumberConversion />);
    
     const inputNode = screen.getByLabelText(/Input text:/i)
@@ -117,4 +117,92 @@ it("provides twenty-one thousand three hundred and thirty-six  for 21336", () =>
     userEvent.click(screen.getByText('Submit'))
 
     expect(getByTestId("number-text").textContent).toEqual("twenty-one thousand three hundred and thirty-six");
+});
+
+it("provides two hundred and eleven thousand three hundred and thirty-six  for 211,336", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '211336');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("two hundred and eleven thousand three hundred and thirty-six");
+});
+
+it("provides two million one hundred and eleven thousand three hundred and thirty-six  for 2,111,336", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '2111336');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("two million one hundred and eleven thousand three hundred and thirty-six");
+});
+
+it("provides two billion one hundred and eleven million one hundred and thirteen thousand three hundred and thirty-six  for 2,111,113,336", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '2111113336');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("two billion one hundred and eleven million one hundred and thirteen thousand three hundred and thirty-six");
+});
+
+it("provides nine billion for 9,000,000,000", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '9000000000');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("nine billion");
+});
+
+it("provides twelve million and one for 12,000,001", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '12000001');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("twelve million and one");
+});
+
+it("provides two million nineteen thousand for 2,019,000", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '2019000');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("two million nineteen thousand");
+});
+
+it("provides two billion nineteen million for 2,019,000,000", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '2019000000');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("two billion nineteen million");
+});
+
+it("provides three hundred and fifty-four trillion two billion nineteen million and twenty-five for 354,002,019,000,025", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '354002019000025');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("three hundred and fifty-four trillion two billion nineteen million and twenty-five");
 });
