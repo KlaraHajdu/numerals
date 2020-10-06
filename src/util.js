@@ -1,7 +1,11 @@
 import numbersObject from "./numbersObject";
 
-const convertNumbers = (input) => {
-    if (!Number.isInteger(Number(input)) || input.length > 15) return "";
+const convertNumbers = (rawInput) => {
+    let rawInputNoPositive = rawInput;
+    if (rawInput.charAt(0) === "+") rawInputNoPositive = rawInput.slice(1);
+    let input = rawInputNoPositive.trim();
+
+    if (!Number.isInteger(Number(input)) || input.length > 15 || input.charAt(0) === "-") return "";
 
     if (input.length === 1) return numbersObject[1][Number(input)];
     else if (input.length === 2) {

@@ -206,3 +206,25 @@ it("provides three hundred and fifty-four trillion two billion nineteen million 
 
     expect(getByTestId("number-text").textContent).toEqual("three hundred and fifty-four trillion two billion nineteen million and twenty-five");
 });
+
+it("provides thirty-six for +36", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '+36');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("thirty-six");
+});
+
+it("provides empty string for minus numbers", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '-36');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("");
+});
