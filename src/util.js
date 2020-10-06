@@ -1,47 +1,53 @@
 import numbersObject from "./numbersObject";
 
 const convertNumbers = (input) => {
+   
+    if (!Number.isInteger(Number(input))) return "";
+
+    if (input.length === 1) return numbersObject[1][Number(input)];
     
-    let inputNumber = Number(input);
-
-    if (!Number.isInteger(inputNumber)) return "";
-
-    if (numbersObject[1][inputNumber]) return numbersObject[1][inputNumber];
-    else if (numbersObject['special'][inputNumber]) return numbersObject['special'][inputNumber];
-
-    else {
-
-        let onesTensArr = []; 
-        let hundredsAboveArr = [];
-        
-        for (let i = 1; i <= input.length; i++){
-
-            if (Number(input.slice(-2)) >= 10 && Number(input.slice(-2)) <= 19) {  
-                onesTensArr.push(numbersObject['special'][Number(input.slice(-2))])
-                i = 3;
-            }
-
-            let digit = input.charAt(input.length-i);
-            
-            if (i === 1 && numbersObject[i][digit]) onesTensArr.push(numbersObject[i][digit])
-
-            if (i === 2) {
-                let tens = parseInt(digit.toString() + 0);
-                if (numbersObject[i][tens]) onesTensArr.push(numbersObject[i][tens])
-            }
-
-            if (i === 3) {
-                hundredsAboveArr.push(numbersObject[i][100]);
-                hundredsAboveArr.push(numbersObject[1][digit]);
-                
-            }
-        }
-        let onesTens = onesTensArr && onesTensArr.reverse().join("-");
-        let hundredsAbove = hundredsAboveArr.reverse().join(" ");
-        let result = hundredsAbove?  hundredsAbove + (onesTens && " and " + onesTens): onesTens;
-        return result;
+    else if (input.length === 2) {
+        return convertDiad(input);
     }
 
+    else if (input.length === 3) {
+        return convertTriad(input);
+    }
+
+    
+    }
+
+
+const convertTriad = (triadInput) => {
+    let resultArr = [];
+    let digit = triadInput.charAt(0);
+    if (digit !== "0") resultArr.push(numbersObject[1][Number(digit)]);
+    resultArr.push(numbersObject[3][100]);
+    let textDiad = convertDiad(triadInput.slice(-2));
+    if (textDiad) {
+        resultArr.push("and");
+        resultArr.push(textDiad);
+    }
+
+    let result = resultArr.join(" ");
+    return result;
+};
+
+const convertDiad = (diadInput) => {
+    
+    if (diadInput.charAt(-2) === "0") return numbersObject[1][Number(diadInput.charAt(diadInput.length-1))];
+    if (numbersObject["special"][diadInput]) return numbersObject["special"][diadInput];
+    let resultArr = [];
+    console.log(diadInput.charAt(diadInput.length-2))
+    let tens = Number(diadInput.charAt(diadInput.length-2) + 0);
+    console.log(tens)
+    resultArr.push(numbersObject[2][tens]);
+    let ones = Number(diadInput.slice(-1))
+    if (ones !== 0) {
+        resultArr.push("-");
+        resultArr.push(numbersObject[1][ones])
+    }
+    return resultArr.join("");
 };
 
 export default convertNumbers;
