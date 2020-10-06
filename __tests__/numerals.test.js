@@ -52,3 +52,14 @@ it("provides twenty-seven for 27", () => {
 
     expect(getByTestId("number-text").textContent).toEqual("twenty-seven");
 });
+
+it("provides empty string for 45dkfvdf", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '45dkfvdf');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("");
+});
