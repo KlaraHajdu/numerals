@@ -63,3 +63,36 @@ it("provides empty string for 45dkfvdf", () => {
 
     expect(getByTestId("number-text").textContent).toEqual("");
 });
+
+it("provides four hundred and fifty-six for 456", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '456');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("four hundred and fifty-six");
+});
+
+it("provides four hundred  for 400", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '400');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("four hundred");
+});
+
+it("provides one hundred and twelve  for 112", () => {
+    const { getByTestId } = render(<NumberConversion />);
+   
+    const inputNode = screen.getByLabelText(/Input text:/i)
+    userEvent.type(inputNode, '112');
+
+    userEvent.click(screen.getByText('Submit'))
+
+    expect(getByTestId("number-text").textContent).toEqual("one hundred and twelve");
+});

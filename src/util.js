@@ -11,22 +11,34 @@ const convertNumbers = (input) => {
 
     else {
 
-        let numberTextArr = []; 
+        let onesTensArr = []; 
+        let hundredsAboveArr = [];
         
         for (let i = 1; i <= input.length; i++){
 
+            if (Number(input.slice(-2)) >= 10 && Number(input.slice(-2)) <= 19) {  
+                onesTensArr.push(numbersObject['special'][Number(input.slice(-2))])
+                i = 3;
+            }
+
             let digit = input.charAt(input.length-i);
-            console.log(digit)
             
-            if (i === 1) numberTextArr.push(numbersObject[i][digit])
+            if (i === 1 && numbersObject[i][digit]) onesTensArr.push(numbersObject[i][digit])
 
             if (i === 2) {
                 let tens = parseInt(digit.toString() + 0);
-                console.log(tens);
-                numberTextArr.push(numbersObject[i][tens])
+                if (numbersObject[i][tens]) onesTensArr.push(numbersObject[i][tens])
+            }
+
+            if (i === 3) {
+                hundredsAboveArr.push(numbersObject[i][100]);
+                hundredsAboveArr.push(numbersObject[1][digit]);
+                
             }
         }
-        let result = numberTextArr.reverse().join("-");
+        let onesTens = onesTensArr && onesTensArr.reverse().join("-");
+        let hundredsAbove = hundredsAboveArr.reverse().join(" ");
+        let result = hundredsAbove?  hundredsAbove + (onesTens && " and " + onesTens): onesTens;
         return result;
     }
 
