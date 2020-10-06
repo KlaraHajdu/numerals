@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import convertNumbers from "../util";
+import "../app.css";
 
 export default function NumberConversion() {
     const [inputNumber, setInputNumber] = useState();
